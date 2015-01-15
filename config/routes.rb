@@ -1,5 +1,5 @@
 Gourmet2::Application.routes.draw do
-  get "foods#posts"
+  root 'foods#posts'
   get "foods/posts_category"
   get "foods/show"
   get "foods/write"
