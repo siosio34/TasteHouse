@@ -39,11 +39,37 @@ class FoodsController < ApplicationController
 end
 
   def edit
+			@post = Post.find(params[:id])
   end
 
   def edit_complete
+			post = Post.find(params[:id])
+			post.category = params[:post_category]
+			post.title = params[:post_title]
+			post.content = params[:post_content]
+			if post.save
+      flash[:alert] = "수정되었습니다."
+      redirect_to "/foods/show/#{post.id}"
+    else
+      flash[:alert] = post.errors.values.flatten.join(' ')
+      redirect_to :back
+    end
   end
 
   def delete_complete
+		post = Post.find(params[:id])
+		post.destroy
+		flash[:alert] = "삭제되었습니다."
+		redirect_to "/"
   end
+
+	def write_comment_complete
+		comment = Comment.new
+		comment.post_id = params[:post_id]
+		comment.content = params[:comment_content]
+		comment.save
+
+		 flash[:alert] = "새 댓글을 달았습니다."
+    redirect_to "/foods/show/#{comment.post_id}"
+	end
 end
