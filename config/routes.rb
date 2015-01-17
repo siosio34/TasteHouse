@@ -5,9 +5,10 @@ Gourmet2::Application.routes.draw do
   get "foods/write"
   post "foods/write_complete"
   get "foods/edit/:id" => 'foods#edit'
-  get "foods/edit_complete"
+  post "foods/edit_complete"
   get "foods/delete_complete/:id" => 'foods#delete_complete'
 	post "foods/write_comment_complete"
+	get "foods/delete_comment_complete/:id" => 'foods#delete_comment_complete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
